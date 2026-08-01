@@ -19,10 +19,15 @@ Simple upload activity module for Moodle.
   - complete on file upload, or
   - complete on final submission
 - Teacher submissions overview page
+- Moodle Backup/Restore support; learner submissions and files are only included when user data is selected
 
 ## Requirements
 
 - Moodle 4.5+
+
+## Compatibility
+
+The plugin supports Moodle 4.5 through current releases while the relevant Moodle APIs remain compatible. If a future Moodle release requires an incompatible implementation, supported versions will be maintained in separate branches or releases.
 
 ## Installation
 
