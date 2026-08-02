@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-const TINYUPLOAD_COMPLETION_HASFILE = 'hasfile';
-const TINYUPLOAD_COMPLETION_FINALSUBMIT = 'finalsubmit';
+const UPLOAD_COMPLETION_HASFILE = 'hasfile';
+const UPLOAD_COMPLETION_FINALSUBMIT = 'finalsubmit';
 
 /**
  * Get or create a submission container for a user.

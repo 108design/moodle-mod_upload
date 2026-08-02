@@ -178,7 +178,7 @@ foreach ($submissions as $submission) {
         }
     }
 
-    if ($upload->completionmode === TINYUPLOAD_COMPLETION_FINALSUBMIT) {
+    if ($upload->completionmode === UPLOAD_COMPLETION_FINALSUBMIT) {
         if (!empty($submission->finalsubmitted)) {
             $status = get_string('status_finalsubmitted', 'upload');
         } else if ($hasfiles) {

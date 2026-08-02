@@ -160,7 +160,7 @@ function upload_get_completion_state($course, $cm, $userid, $type): bool {
         return false;
     }
 
-    if ($upload->completionmode === TINYUPLOAD_COMPLETION_FINALSUBMIT) {
+    if ($upload->completionmode === UPLOAD_COMPLETION_FINALSUBMIT) {
         return !empty($submission->finalsubmitted);
     }
 

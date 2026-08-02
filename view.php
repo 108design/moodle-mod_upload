@@ -65,7 +65,7 @@ $fileoptions = upload_submission_filemanager_options($upload, $context, $submiss
 $draftitemid = file_get_submitted_draft_itemid('submission_files');
 file_prepare_draft_area($draftitemid, $context->id, 'mod_upload', 'submission_files', $submission->id, $fileoptions);
 
-$showfinal = ($upload->completionmode === TINYUPLOAD_COMPLETION_FINALSUBMIT && !$locked &&
+$showfinal = ($upload->completionmode === UPLOAD_COMPLETION_FINALSUBMIT && !$locked &&
     has_capability('mod/upload:submit', $context));
 $mform = new \mod_upload\form\upload_form($url->out(false), [
     'canedit' => $canedit,
@@ -159,7 +159,7 @@ if (trim(strip_tags($upload->intro ?? '')) !== '') {
 $courseurl = new moodle_url('/course/view.php', ['id' => $course->id]);
 $hasfiles = upload_submission_has_files((int)$context->id, (int)$submission->id);
 
-if ($upload->completionmode === TINYUPLOAD_COMPLETION_FINALSUBMIT) {
+if ($upload->completionmode === UPLOAD_COMPLETION_FINALSUBMIT) {
     if ($locked) {
         echo $OUTPUT->notification(get_string('submissionlocked', 'upload'), \core\output\notification::NOTIFY_SUCCESS);
     } else if ($hasfiles) {

@@ -75,10 +75,10 @@ class mod_upload_mod_form extends moodleform_mod {
         $mform->setDefault('appendusername', 0);
 
         $mform->addElement('select', 'completionmode', get_string('completionmode', 'upload'), [
-            TINYUPLOAD_COMPLETION_HASFILE => get_string('completionmode_hasfile', 'upload'),
-            TINYUPLOAD_COMPLETION_FINALSUBMIT => get_string('completionmode_finalsubmit', 'upload'),
+            UPLOAD_COMPLETION_HASFILE => get_string('completionmode_hasfile', 'upload'),
+            UPLOAD_COMPLETION_FINALSUBMIT => get_string('completionmode_finalsubmit', 'upload'),
         ]);
-        $mform->setDefault('completionmode', TINYUPLOAD_COMPLETION_HASFILE);
+        $mform->setDefault('completionmode', UPLOAD_COMPLETION_HASFILE);
 
         $this->standard_coursemodule_elements();
         $this->add_action_buttons();
