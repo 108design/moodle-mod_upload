@@ -92,7 +92,9 @@ function upload_delete_instance($id): bool {
 
     $upload = $DB->get_record('upload', ['id' => $id]);
     if (!$upload) {
-        return false;
+        // Deletion is intentionally idempotent. This can happen when a stale
+        // course-module cleanup task runs after the instance was already removed.
+        return true;
     }
 
     $context = null;
