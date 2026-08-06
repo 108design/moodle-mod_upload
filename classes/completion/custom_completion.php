@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Custom completion handling for Simple upload activity.
+ * Custom completion handling for Simply Upload activity.
  *
  * @package   mod_upload
  * @copyright 2026 Andreas Giesen <andreas.giesen.ext@nagarro.com>

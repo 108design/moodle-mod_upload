@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Simple upload module view page.
+ * Simply Upload module view page.
  *
  * @package   mod_upload
  * @copyright 2026 Andreas Giesen <andreas.giesen.ext@nagarro.com>

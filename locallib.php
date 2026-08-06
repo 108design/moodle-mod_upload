@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local helper library for Simple upload module.
+ * Local helper library for Simply Upload module.
  *
  * @package   mod_upload
  * @copyright 2026 Andreas Giesen <andreas.giesen.ext@nagarro.com>

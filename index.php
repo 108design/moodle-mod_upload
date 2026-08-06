@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Simple upload index page.
+ * Simply Upload index page.
  *
  * @package   mod_upload
  * @copyright 2026 Andreas Giesen <andreas.giesen.ext@nagarro.com>

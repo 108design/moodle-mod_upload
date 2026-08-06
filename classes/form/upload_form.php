@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Upload interaction form for Simple upload activity.
+ * Upload interaction form for Simply Upload activity.
  *
  * @package   mod_upload
  * @copyright 2026 Andreas Giesen <andreas.giesen.ext@nagarro.com>

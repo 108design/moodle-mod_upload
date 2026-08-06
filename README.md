@@ -1,6 +1,6 @@
 # mod_upload
 
-Simple upload activity module for Moodle.
+Simply Upload activity module for Moodle.
 
 ## Overview
 

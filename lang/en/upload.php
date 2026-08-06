@@ -24,16 +24,16 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Simple upload';
-$string['modulename'] = 'Simple upload';
-$string['modulenameplural'] = 'Simple uploads';
-$string['modulename_help'] = 'Simple upload allows users to upload one or more files and complete based on upload/final submit rules.';
-$string['pluginadministration'] = 'Simple upload administration';
+$string['pluginname'] = 'Simply Upload';
+$string['modulename'] = 'Simply Upload';
+$string['modulenameplural'] = 'Simply Uploads';
+$string['modulename_help'] = 'Simply Upload allows users to upload one or more files and complete based on upload/final submit rules.';
+$string['pluginadministration'] = 'Simply Upload administration';
 
-$string['upload:addinstance'] = 'Add a new Simple upload activity';
-$string['upload:view'] = 'View Simple upload activity';
-$string['upload:submit'] = 'Upload files in Simple upload';
-$string['upload:viewsubmissions'] = 'View Simple upload submissions';
+$string['upload:addinstance'] = 'Add a new Simply Upload activity';
+$string['upload:view'] = 'View Simply Upload activity';
+$string['upload:submit'] = 'Upload files in Simply Upload';
+$string['upload:viewsubmissions'] = 'View Simply Upload submissions';
 
 $string['maxfiles'] = 'Maximum number of files';
 $string['maxbytes'] = 'Maximum file size';
@@ -50,9 +50,9 @@ $string['completionmode'] = 'Completion mode';
 $string['completionmode_hasfile'] = 'Complete when at least one file exists';
 $string['completionmode_finalsubmit'] = 'Complete only after final submit';
 
-$string['completionuploaddone'] = 'Student must complete Simple upload conditions';
-$string['completionuploaddone_desc'] = 'Activity is complete when the Simple upload completion mode condition is met.';
-$string['completiondetail:uploaddone'] = 'User must satisfy Simple upload completion condition';
+$string['completionuploaddone'] = 'Student must complete Simply Upload conditions';
+$string['completionuploaddone_desc'] = 'Activity is complete when the Simply Upload completion mode condition is met.';
+$string['completiondetail:uploaddone'] = 'User must satisfy Simply Upload completion condition';
 
 $string['uploadfiles'] = 'Upload files';
 $string['uploadtab'] = 'Upload';
@@ -91,13 +91,13 @@ $string['deleteallsubmissions'] = 'Delete all submissions';
 $string['noselectedsubmissions'] = 'No submissions selected.';
 $string['submissionsdeleted'] = '{$a} submission(s) deleted.';
 $string['nosubmissions'] = 'No submissions found.';
-$string['nonewmodules'] = 'No Simple upload activities found in this course.';
-$string['pluginnotconfigured'] = 'Simple upload is not configured correctly.';
+$string['nonewmodules'] = 'No Simply Upload activities found in this course.';
+$string['pluginnotconfigured'] = 'Simply Upload is not configured correctly.';
 
 $string['modulename_link'] = 'mod/upload/view';
 
-$string['eventsubmissionupdated'] = 'Simple upload submission updated';
-$string['eventsubmissionfinalised'] = 'Simple upload submission finalised';
+$string['eventsubmissionupdated'] = 'Simply Upload submission updated';
+$string['eventsubmissionfinalised'] = 'Simply Upload submission finalised';
 
 $string['page-mod-upload-x'] = 'Any upload module page';
 $string['uploadfieldset'] = 'Custom upload settings';
