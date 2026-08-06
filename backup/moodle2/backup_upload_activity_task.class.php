@@ -47,6 +47,20 @@ class backup_upload_activity_task extends backup_activity_task {
      * @return string
      */
     public static function encode_content_links($content) {
-        return self::encode_activity_links($content, '/mod/upload/view.php?id=', 'upload');
+        global $CFG;
+
+        $base = preg_quote($CFG->wwwroot, '/');
+        $content = preg_replace(
+            '/(' . $base . '\/mod\/upload\/index.php\?id=)([0-9]+)/',
+            '$@UPLOADINDEX*$2@$',
+            $content
+        );
+        $content = preg_replace(
+            '/(' . $base . '\/mod\/upload\/view.php\?id=)([0-9]+)/',
+            '$@UPLOADVIEWBYID*$2@$',
+            $content
+        );
+
+        return $content;
     }
 }

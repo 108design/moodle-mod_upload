@@ -58,6 +58,7 @@ class restore_upload_activity_task extends restore_activity_task {
      */
     public static function define_decode_rules() {
         return [
+            new restore_decode_rule('UPLOADINDEX', '/mod/upload/index.php?id=$1', 'course'),
             new restore_decode_rule('UPLOADVIEWBYID', '/mod/upload/view.php?id=$1', 'course_module'),
         ];
     }
