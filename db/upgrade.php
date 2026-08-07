@@ -51,5 +51,23 @@ function xmldb_upload_upgrade(int $oldversion): bool {
         upgrade_mod_savepoint(true, 2026040900, 'upload');
     }
 
+    if ($oldversion < 2026080800) {
+        $table = new xmldb_table('upload');
+        $field = new xmldb_field(
+            'name',
+            XMLDB_TYPE_CHAR,
+            '255',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            'Upload',
+            'course'
+        );
+
+        $dbman->change_field_default($table, $field);
+
+        upgrade_mod_savepoint(true, 2026080800, 'upload');
+    }
+
     return true;
 }
