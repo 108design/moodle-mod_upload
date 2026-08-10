@@ -42,8 +42,10 @@ The plugin supports Moodle 4.5 through current releases while the relevant Moodl
 
 ## Author
 
-- Andreas Giesen (<andreas.giesen.ext@nagarro.com>)
+- Andreas Giesen (<andreas@108design.com>)
 
 ## License
 
-GNU GPL v3 or later.
+108design Simply Upload Software License. This is a source-available commercial
+software license, not an open-source license. See [LICENSE.md](LICENSE.md) for
+the full terms.
