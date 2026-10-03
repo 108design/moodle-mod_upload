@@ -1,6 +1,7 @@
-# mod_upload
+# Simply Upload for Moodle
 
-Simply Upload activity module for Moodle.
+Collect learner files in a focused course activity, with optional final submission
+and automatic activity completion.
 
 ## Overview
 
@@ -27,7 +28,7 @@ Simply Upload activity module for Moodle.
 
 ## Compatibility
 
-The plugin supports Moodle 4.5 through current releases while the relevant Moodle APIs remain compatible. If a future Moodle release requires an incompatible implementation, supported versions will be maintained in separate branches or releases.
+Requires Moodle 4.5 or later and the PHP version required by your Moodle release.
 
 ## Installation
 
@@ -35,10 +36,15 @@ The plugin supports Moodle 4.5 through current releases while the relevant Moodl
    - `mod/upload`
 2. Visit **Site administration → Notifications** to complete installation.
 
-## Notes
+## Using the activity
 
-- File links in student and teacher views open in a new tab.
-- Submission status labels are mode-aware for clearer wording.
+Teachers select the permitted file types, number and size of files, and whether
+learners may replace a submission. Choose whether completion follows an upload
+or requires the learner to submit finally.
+
+Learners upload their files from the activity page. When final submission is enabled,
+they also confirm their submission. Teachers review learner files in the submissions
+overview. File links open in a new tab.
 
 ## Author
 
