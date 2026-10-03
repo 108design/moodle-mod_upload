@@ -46,6 +46,4 @@ The plugin supports Moodle 4.5 through current releases while the relevant Moodl
 
 ## License
 
-108design Simply Upload Software License. This is a source-available commercial
-software license, not an open-source license. See [LICENSE.md](LICENSE.md) for
-the full terms.
+This is a 108design source-available commercial software license, not an open-source license. See [LICENSE.md](https://github.com/108design/moodle-mod_upload/blob/main/LICENSE.md) for the full terms.
