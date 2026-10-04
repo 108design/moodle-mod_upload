@@ -94,3 +94,14 @@ $string['eventsubmissionfinalised'] = 'Simply Upload submission finalised';
 
 $string['page-mod-upload-x'] = 'Any upload module page';
 $string['uploadfieldset'] = 'Custom upload settings';
+
+$string['privacy:metadata:submission'] = 'Learner submissions, their status and submission timestamps.';
+$string['privacy:metadata:submission:uploadid'] = 'The activity to which the submission belongs.';
+$string['privacy:metadata:submission:userid'] = 'The learner who owns the submission.';
+$string['privacy:metadata:submission:status'] = 'The submission status.';
+$string['privacy:metadata:submission:finalsubmitted'] = 'Whether the learner has confirmed final submission.';
+$string['privacy:metadata:submission:finalsubmittedat'] = 'When the learner confirmed final submission.';
+$string['privacy:metadata:submission:timecreated'] = 'When the submission record was created.';
+$string['privacy:metadata:submission:timemodified'] = 'When the submission was last changed.';
+$string['privacy:metadata:files'] = 'Learner submission files, which may contain personal data. Filenames can include the learner user ID or username when those options are enabled.';
+$string['privacy:path'] = 'Submission';
