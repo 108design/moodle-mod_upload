@@ -197,6 +197,7 @@ foreach ($submissions as $submission) {
 }
 
 echo html_writer::table($table);
+echo html_writer::start_div('mt-3');
 echo html_writer::empty_tag('input', [
     'type' => 'submit',
     'name' => 'deleteselected',
@@ -209,6 +210,7 @@ echo html_writer::empty_tag('input', [
     'value' => get_string('deleteallsubmissions', 'upload'),
     'class' => 'btn btn-danger',
 ]);
+echo html_writer::end_div();
 echo html_writer::end_tag('form');
 
 $PAGE->requires->js_init_code("document.getElementById('upload-selectall')?.addEventListener('change', function() {
