@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/108design/moodle-mod_upload/main/docs/branding/logo.svg" alt="Simply Upload logo" width="443" height="443">
+</p>
+
 # Simply Upload for Moodle
 
 Collect learner files in a focused course activity, with optional final submission
