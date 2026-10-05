@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/108design/moodle-mod_upload/main/docs/branding/logo.svg" alt="Simply Upload logo" width="443" height="443">
+  <img src="https://raw.githubusercontent.com/108design/moodle-mod_upload/main/docs/branding/logo.svg" alt="Simply Upload logo" width="125" height="125">
 </p>
 
 # Simply Upload for Moodle
