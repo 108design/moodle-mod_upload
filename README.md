@@ -92,4 +92,6 @@ owner and staff with permission to view submissions. No external upload service 
 
 ## License
 
-This is a 108design source-available commercial software license, not an open-source license. See [LICENSE.md](https://github.com/108design/moodle-mod_upload/blob/main/LICENSE.md) for the full terms.
+**This release is available free of charge under the 108design Software License.**
+
+See [LICENSE.md](https://github.com/108design/moodle-mod_upload/blob/main/LICENSE.md) for the full terms.
