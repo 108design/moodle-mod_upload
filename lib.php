@@ -111,6 +111,33 @@ function upload_delete_instance($id): bool {
 }
 
 /**
+ * Provide the activity description and enabled completion rule to Moodle's module cache.
+ *
+ * @param stdClass $coursemodule Course module record.
+ * @return cached_cm_info|false Cached information, or false for a missing instance.
+ */
+function upload_get_coursemodule_info($coursemodule) {
+    global $DB;
+
+    $upload = $DB->get_record('upload', ['id' => $coursemodule->instance],
+        'id, name, intro, introformat, completionuploaddone');
+    if (!$upload) {
+        return false;
+    }
+
+    $info = new cached_cm_info();
+    $info->name = $upload->name;
+    if (!empty($coursemodule->showdescription)) {
+        $info->content = format_module_intro('upload', $upload, $coursemodule->id, false);
+    }
+    if ((int)$coursemodule->completion === COMPLETION_TRACKING_AUTOMATIC) {
+        $info->customdata['customcompletionrules']['completionuploaddone'] = (int)$upload->completionuploaddone;
+    }
+
+    return $info;
+}
+
+/**
  * Gets completion custom rule descriptions.
  *
  * @param cm_info $cm

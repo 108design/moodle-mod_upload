@@ -56,11 +56,11 @@ Click a preview to open the full-size screenshot.
 
 ## Requirements
 
-- Moodle 4.5 through 5.2
+- Moodle 4.5 through 5.3
 
 ## Compatibility
 
-Supports Moodle 4.5 through 5.2 and the PHP version required by your Moodle release.
+Supports Moodle 4.5 through 5.3 and the PHP version required by your Moodle release.
 
 ## Installation
 
