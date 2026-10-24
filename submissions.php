@@ -37,6 +37,7 @@ $PAGE->set_url($url);
 $PAGE->set_title(format_string($upload->name) . ': ' . get_string('submissions', 'upload'));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
+\mod_upload\local\admin_help::prepare();
 
 $validsort = ['user', 'timeuploaded'];
 if (!in_array($sort, $validsort, true)) {
@@ -45,37 +46,29 @@ if (!in_array($sort, $validsort, true)) {
 $dir = ($dir === 'desc') ? 'desc' : 'asc';
 $nextdir = ($dir === 'asc') ? 'desc' : 'asc';
 
-if (optional_param('deleteselected', 0, PARAM_BOOL) && confirm_sesskey()) {
+$candelete = has_capability('mod/upload:deletesubmissions', $context);
+$deleteall = optional_param('deleteall', false, PARAM_BOOL);
+$deleteselected = optional_param('deleteselected', false, PARAM_BOOL);
+if ($deleteall || $deleteselected) {
+    require_capability('mod/upload:deletesubmissions', $context);
+    require_sesskey();
     $selected = optional_param_array('selectedsubmissions', [], PARAM_INT);
-    if (empty($selected)) {
+    if (!$deleteall && !$selected) {
         redirect($url, get_string('noselectedsubmissions', 'upload'), null, \core\output\notification::NOTIFY_WARNING);
     }
-
-    [$insql, $inparams] = $DB->get_in_or_equal($selected, SQL_PARAMS_NAMED);
-    $params = array_merge(['uploadid' => $upload->id], $inparams);
-    $records = $DB->get_records_select('upload_submissions', "uploadid = :uploadid AND id {$insql}", $params, '', 'id');
-
-    foreach ($records as $record) {
-        $fs = get_file_storage();
-        $fs->delete_area_files($context->id, 'mod_upload', 'submission_files', $record->id);
-        $DB->delete_records('upload_submissions', ['id' => $record->id]);
-        upload_update_user_completion($course, $cm, (int)$record->userid);
+    if (!optional_param('confirmdelete', false, PARAM_BOOL) || !data_submitted()) {
+        $params = ['id' => $cm->id, 'confirmdelete' => 1, $deleteall ? 'deleteall' : 'deleteselected' => 1];
+        foreach ($selected as $key => $submissionid) {
+            $params['selectedsubmissions[' . $key . ']'] = $submissionid;
+        }
+        echo $OUTPUT->header();
+        echo $OUTPUT->confirm(get_string($deleteall ? 'confirmdeleteall' : 'confirmdeleteselected', 'upload'),
+            new single_button(new moodle_url($url, $params), get_string('delete'), 'post'), $url);
+        echo \mod_upload\local\admin_help::render();
+        echo $OUTPUT->footer();
+        exit;
     }
-
-    $count = count($records);
-    redirect($url, get_string('submissionsdeleted', 'upload', $count), null, \core\output\notification::NOTIFY_SUCCESS);
-}
-
-if (optional_param('deleteall', 0, PARAM_BOOL) && confirm_sesskey()) {
-    $records = $DB->get_records('upload_submissions', ['uploadid' => $upload->id], '', 'id');
-    foreach ($records as $record) {
-        $fs = get_file_storage();
-        $fs->delete_area_files($context->id, 'mod_upload', 'submission_files', $record->id);
-        $DB->delete_records('upload_submissions', ['id' => $record->id]);
-        upload_update_user_completion($course, $cm, (int)$record->userid);
-    }
-
-    $count = count($records);
+    $count = \mod_upload\local\submission_manager::delete($upload, $course, $cm, $deleteall ? null : $selected);
     redirect($url, get_string('submissionsdeleted', 'upload', $count), null, \core\output\notification::NOTIFY_SUCCESS);
 }
 
@@ -115,107 +108,43 @@ $submissions = $DB->get_records_sql($sql, ['uploadid' => $upload->id]);
 
 if (!$submissions) {
     echo $OUTPUT->notification(get_string('nosubmissions', 'upload'), \core\output\notification::NOTIFY_INFO);
+    echo \mod_upload\local\admin_help::render();
     echo $OUTPUT->footer();
     exit;
 }
 
-$selectallcheckbox = html_writer::checkbox('selectall', 1, false, '', [
-    'id' => 'upload-selectall',
-    'title' => get_string('selectall', 'upload'),
-]);
-
-$table = new html_table();
-$table->head = [
-    $selectallcheckbox,
-    html_writer::link($usersorturl, get_string('user')),
-    get_string('status', 'upload'),
-    get_string('filename', 'upload'),
-    html_writer::link($timesorturl, get_string('timeuploaded', 'upload')),
-];
-
+$rows = [];
 $fs = get_file_storage();
-echo html_writer::start_tag('form', ['method' => 'post', 'action' => $url->out(false)]);
-echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'sesskey', 'value' => sesskey()]);
-
 foreach ($submissions as $submission) {
-    $files = $fs->get_area_files(
-        $context->id,
-        'mod_upload',
-        'submission_files',
-        $submission->id,
-        'timemodified DESC',
-        false
-    );
-
-    $username = fullname($submission) . ' (' . s($submission->email) . ')';
+    $files = $fs->get_area_files($context->id, 'mod_upload', 'submission_files', $submission->id,
+        'timemodified DESC', false);
     $hasfiles = !empty($files);
-    $filenames = [];
-    $latesttimemodified = '-';
-
-    if ($hasfiles) {
-        $first = reset($files);
-        $latesttimemodified = userdate($first->get_timemodified());
-        foreach ($files as $file) {
-            $fileurl = moodle_url::make_pluginfile_url(
-                $context->id,
-                'mod_upload',
-                'submission_files',
-                $submission->id,
-                $file->get_filepath(),
-                $file->get_filename()
-            );
-            $filenames[] = html_writer::link($fileurl, s($file->get_filename()), [
-                'target' => '_blank',
-                'rel' => 'noopener noreferrer',
-            ]);
-        }
-    }
-
     if ($upload->completionmode === UPLOAD_COMPLETION_FINALSUBMIT) {
-        if (!empty($submission->finalsubmitted)) {
-            $status = get_string('status_finalsubmitted', 'upload');
-        } else if ($hasfiles) {
-            $status = get_string('status_draftwithfiles', 'upload');
-        } else {
-            $status = get_string('status_draftnofiles', 'upload');
-        }
+        $statuskey = !empty($submission->finalsubmitted) ? 'status_finalsubmitted'
+            : ($hasfiles ? 'status_draftwithfiles' : 'status_draftnofiles');
     } else {
-        $status = $hasfiles
-            ? get_string('status_uploaded', 'upload')
-            : get_string('status_noupload', 'upload');
+        $statuskey = $hasfiles ? 'status_uploaded' : 'status_noupload';
     }
-
-    $table->data[] = [
-        html_writer::checkbox('selectedsubmissions[]', $submission->id, false, '', [
-            'class' => 'upload-selectitem',
-        ]),
-        $username,
-        $status,
-        $hasfiles ? implode('<br>', $filenames) : get_string('nofiles', 'upload'),
-        $latesttimemodified,
+    $links = [];
+    foreach ($files as $file) {
+        $links[] = [
+            'name' => $file->get_filename(),
+            'url' => moodle_url::make_pluginfile_url($context->id, 'mod_upload', 'submission_files',
+                $submission->id, $file->get_filepath(), $file->get_filename(), true)->out(false),
+        ];
+    }
+    $rows[] = [
+        'id' => $submission->id, 'fullname' => fullname($submission), 'email' => $submission->email,
+        'selectlabel' => get_string('selectsubmission', 'upload', fullname($submission)),
+        'status' => get_string($statuskey, 'upload'), 'files' => $links,
+        'time' => $hasfiles ? userdate(reset($files)->get_timemodified()) : '-',
     ];
 }
-
-echo html_writer::table($table);
-echo html_writer::start_div('mt-3');
-echo html_writer::empty_tag('input', [
-    'type' => 'submit',
-    'name' => 'deleteselected',
-    'value' => get_string('deleteselected', 'upload'),
-    'class' => 'btn btn-secondary me-2',
+echo $OUTPUT->render_from_template('mod_upload/submissions', [
+    'url' => $url->out(false), 'sesskey' => sesskey(), 'candelete' => $candelete,
+    'deletehelp' => $candelete ? \mod_upload\local\admin_help::icon('deleting') : '',
+    'usersorturl' => $usersorturl->out(false), 'timesorturl' => $timesorturl->out(false), 'rows' => $rows,
 ]);
-echo html_writer::empty_tag('input', [
-    'type' => 'submit',
-    'name' => 'deleteall',
-    'value' => get_string('deleteallsubmissions', 'upload'),
-    'class' => 'btn btn-danger',
-]);
-echo html_writer::end_div();
-echo html_writer::end_tag('form');
-
-$PAGE->requires->js_init_code("document.getElementById('upload-selectall')?.addEventListener('change', function() {
-    var checked = this.checked;
-    document.querySelectorAll('.upload-selectitem').forEach(function(cb) { cb.checked = checked; });
-});");
-
+$PAGE->requires->js_call_amd('mod_upload/submissions', 'init');
+echo \mod_upload\local\admin_help::render();
 echo $OUTPUT->footer();

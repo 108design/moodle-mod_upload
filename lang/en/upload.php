@@ -105,3 +105,28 @@ $string['privacy:metadata:submission:timecreated'] = 'When the submission record
 $string['privacy:metadata:submission:timemodified'] = 'When the submission was last changed.';
 $string['privacy:metadata:files'] = 'Learner submission files, which may contain personal data. Filenames can include the learner user ID or username when those options are enabled.';
 $string['privacy:path'] = 'Submission';
+
+$string['upload:deletesubmissions'] = 'Delete Simply Upload submissions';
+$string['eventsubmissiondeleted'] = 'Simply Upload submission deleted';
+$string['confirmdeleteall'] = 'Delete all submissions and their files in this activity? This cannot be undone. Upload-based completion will be recalculated.';
+$string['confirmdeleteselected'] = 'Delete the selected submissions and their files in this activity? This cannot be undone. Upload-based completion will be recalculated.';
+$string['selectsubmission'] = 'Select the submission by {$a}';
+$string['deletionhelp'] = 'Deleting submissions also removes their files and recalculates upload-based completion. You will be asked to confirm before anything is deleted.';
+
+$string['adminhelp'] = 'Simply Upload help';
+$string['adminhelptopics'] = 'Help Topics';
+$string['adminhelpmore'] = 'More in the help panel';
+$string['adminhelp_upload'] = 'Uploading and final submission';
+$string['adminhelp_upload_article'] = '<p>Choose your files and select Save uploaded files. Current files lists what has been saved; opening a file downloads it.</p><p>If this activity requires final submission, select Final submit after saving. This locks your submission. Whether you may replace files before that depends on the activity settings.</p>';
+$string['adminhelp_report'] = 'Reading submissions';
+$string['adminhelp_report_article'] = '<p>The Submissions tab lists learner files and submission status. Select a column heading to change the sort order. Open a filename to download it.</p><p>Viewing submissions does not grant permission to delete them.</p>';
+$string['adminhelp_deleting'] = 'Deleting submissions';
+$string['adminhelp_deleting_article'] = '<p>Select learner submissions and choose Delete selected, or choose Delete all submissions for this activity. Review the confirmation before deleting.</p><p>Deletion permanently removes the selected submission records and files, then recalculates upload-based completion for their owners. Other activities are unaffected. This action requires the separate Delete Simply Upload submissions permission.</p>';
+$string['deleting'] = 'Deleting submissions';
+$string['deleting_help'] = 'Deletion removes submission records and files from this activity. The next page asks you to confirm.';
+
+$string['completionuploaddone_help'] = 'Depending on the completion mode, at least one file must be saved or final submission must be confirmed. Deleting a submission recalculates this completion.';
+$string['uploadfiles_help'] = 'Choose files within the displayed number, size and file-type limits, then select Save uploaded files. Files become part of your submission only after saving.';
+$string['adminhelp_upload_help'] = 'Save your files first. If final submission is required, Final submit then locks further editing.';
+$string['adminhelp_report_help'] = 'Read the saved files and submission status here. Permission to view submissions does not grant permission to delete them.';
+$string['adminhelp_deleting_help'] = 'Deletion removes submission records and files from this activity. The next page asks you to confirm.';

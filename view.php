@@ -39,12 +39,14 @@ require_login($course, false, $cm);
 
 $context = context_module::instance($cm->id);
 require_capability('mod/upload:view', $context);
+upload_view($upload, $course, $cm, $context);
 
 $url = new moodle_url('/mod/upload/view.php', ['id' => $cm->id]);
 $PAGE->set_url($url);
 $PAGE->set_title(format_string($upload->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
+\mod_upload\local\admin_help::prepare();
 
 $submission = upload_get_or_create_submission($upload, (int)$USER->id);
 $locked = upload_submission_is_locked($submission);
@@ -168,39 +170,24 @@ if ($upload->completionmode === UPLOAD_COMPLETION_FINALSUBMIT) {
     }
 }
 
-if ($hasfiles || $locked || !$canedit) {
-    echo $OUTPUT->single_button($courseurl, get_string('returntocourse', 'upload'));
-    echo html_writer::empty_tag('br');
-    echo html_writer::empty_tag('br');
-}
-
 $fs = get_file_storage();
 $files = $fs->get_area_files($context->id, 'mod_upload', 'submission_files', $submission->id, 'timemodified DESC', false);
-
-echo $OUTPUT->heading(get_string('currentfiles', 'upload'), 3);
-if (empty($files)) {
-    echo $OUTPUT->notification(get_string('nofiles', 'upload'), \core\output\notification::NOTIFY_INFO);
-} else {
-    $items = [];
-    foreach ($files as $file) {
-        $fileurl = moodle_url::make_pluginfile_url(
-            $context->id,
-            'mod_upload',
-            'submission_files',
-            $submission->id,
-            $file->get_filepath(),
-            $file->get_filename()
-        );
-        $items[] = html_writer::link($fileurl, s($file->get_filename()), [
-            'target' => '_blank',
-            'rel' => 'noopener noreferrer',
-        ]);
-    }
-    echo html_writer::alist($items);
+$links = [];
+foreach ($files as $file) {
+    $links[] = [
+        'name' => $file->get_filename(),
+        'url' => moodle_url::make_pluginfile_url($context->id, 'mod_upload', 'submission_files',
+            $submission->id, $file->get_filepath(), $file->get_filename(), true)->out(false),
+    ];
 }
+echo $OUTPUT->render_from_template('mod_upload/current_files', [
+    'files' => $links, 'hasfiles' => !empty($links), 'courseurl' => $courseurl->out(false),
+    'returntocourse' => $hasfiles || $locked || !$canedit,
+]);
 
 if (!$locked) {
     $mform->display();
 }
 
+echo \mod_upload\local\admin_help::render();
 echo $OUTPUT->footer();

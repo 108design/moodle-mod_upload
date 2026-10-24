@@ -40,6 +40,7 @@ class upload_form extends \moodleform {
         if ($canedit) {
             $mform->addElement('filemanager', 'submission_files', get_string('uploadfiles', 'upload'), null, $fileoptions);
             $mform->setDefault('submission_files', $draftitemid);
+            $mform->addHelpButton('submission_files', 'uploadfiles', 'upload');
             $mform->addElement('submit', 'savefiles', get_string('submitfiles', 'upload'));
         }
 

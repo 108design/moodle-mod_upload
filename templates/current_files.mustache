@@ -1,0 +1,23 @@
+{{!
+This file is part of a 108design source-available software product.
+
+Use and modification are permitted only under the Software License included
+with this distribution. See LICENSE.md for the full terms.
+
+File documentation for templates/current_files.mustache.
+
+@package   mod_upload
+@copyright 2026 Andreas Giesen <andreas@108design.com>
+@license   See LICENSE.md for the full terms.
+}}
+{{!
+    @template mod_upload/current_files
+    @copyright 2026 Andreas Giesen <andreas@108design.com>
+    @license See LICENSE.md for the full terms.
+}}
+<section class="mb-4" aria-labelledby="upload-current-files">
+    {{#returntocourse}}<p><a class="btn btn-secondary" href="{{courseurl}}">{{#str}}returntocourse, mod_upload{{/str}}</a></p>{{/returntocourse}}
+    <h3 id="upload-current-files">{{#str}}currentfiles, mod_upload{{/str}}</h3>
+    {{#hasfiles}}<ul>{{#files}}<li><a href="{{url}}">{{name}}</a></li>{{/files}}</ul>{{/hasfiles}}
+    {{^hasfiles}}<p>{{#str}}nofiles, mod_upload{{/str}}</p>{{/hasfiles}}
+</section>

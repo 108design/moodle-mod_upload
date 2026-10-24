@@ -249,7 +249,7 @@ function upload_pluginfile($course, $cm, $context, $filearea, $args, $forcedownl
         return false;
     }
 
-    send_stored_file($file, null, 0, $forcedownload, $options);
+    send_stored_file($file, null, 0, true, $options);
     return true;
 }
 
@@ -296,4 +296,30 @@ function upload_extend_settings_navigation(settings_navigation $settings, naviga
     );
 
     $uploadnode->add_node($node, $beforekey);
+}
+
+/**
+ * Record an authorised visit and update native view-based completion.
+ *
+ * @param stdClass $upload activity record
+ * @param stdClass $course course record
+ * @param stdClass $cm course module
+ * @param context_module $context module context
+ */
+function upload_view(stdClass $upload, stdClass $course, stdClass $cm, context_module $context): void {
+    global $CFG;
+    require_once($CFG->libdir . '/completionlib.php');
+    require_capability('mod/upload:view', $context);
+    $event = \mod_upload\event\course_module_viewed::create([
+        'objectid' => $upload->id, 'context' => $context,
+    ]);
+    $event->add_record_snapshot('course', $course);
+    $event->add_record_snapshot('upload', $upload);
+    $event->trigger();
+    (new completion_info($course))->set_module_viewed($cm);
+}
+
+/** Render the standalone page help in Moodle's user navigation. */
+function mod_upload_render_navbar_output(\renderer_base $renderer): string {
+    return \mod_upload\local\admin_help::navbar($renderer);
 }

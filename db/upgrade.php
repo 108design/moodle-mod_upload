@@ -62,5 +62,10 @@ function xmldb_upload_upgrade(int $oldversion): bool {
         upgrade_mod_savepoint(true, 2026080800, 'upload');
     }
 
+    if ($oldversion < 2026102400) {
+        // Core refreshes the new deletion capability during the normal plugin upgrade.
+        upgrade_mod_savepoint(true, 2026102400, 'upload');
+    }
+
     return true;
 }

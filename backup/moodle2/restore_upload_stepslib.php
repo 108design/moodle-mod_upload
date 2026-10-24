@@ -29,7 +29,9 @@ class restore_upload_activity_structure_step extends restore_activity_structure_
     protected function define_structure() {
         $paths = [];
         $paths[] = new restore_path_element('upload', '/activity/upload');
-        $paths[] = new restore_path_element('upload_submission', '/activity/upload/submissions/submission');
+        if ($this->get_setting_value('userinfo')) {
+            $paths[] = new restore_path_element('upload_submission', '/activity/upload/submissions/submission');
+        }
 
         return $this->prepare_activity_structure($paths);
     }
@@ -58,11 +60,17 @@ class restore_upload_activity_structure_step extends restore_activity_structure_
     protected function process_upload_submission($data) {
         global $DB;
 
+        if (!$this->get_setting_value('userinfo')) {
+            return;
+        }
         $data = (object)$data;
         $oldid = $data->id;
         $olduploadid = $this->get_old_parentid('upload');
         $data->uploadid = $this->get_mappingid('upload', $olduploadid);
         $data->userid = $this->get_mappingid('user', $data->userid);
+        if (!$data->uploadid || !$data->userid) {
+            return; // Never insert an unmapped learner or activity reference.
+        }
 
         $newitemid = $DB->insert_record('upload_submissions', $data);
         $this->set_mapping('upload_submission', $oldid, $newitemid, true);
@@ -75,6 +83,8 @@ class restore_upload_activity_structure_step extends restore_activity_structure_
      */
     protected function after_execute() {
         $this->add_related_files('mod_upload', 'intro', null);
-        $this->add_related_files('mod_upload', 'submission_files', 'upload_submission');
+        if ($this->get_setting_value('userinfo')) {
+            $this->add_related_files('mod_upload', 'submission_files', 'upload_submission');
+        }
     }
 }

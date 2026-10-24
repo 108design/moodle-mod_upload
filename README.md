@@ -76,7 +76,24 @@ or requires the learner to submit finally.
 
 Learners upload their files from the activity page. When final submission is enabled,
 they also confirm their submission. Teachers review learner files in the submissions
-overview. File links open in a new tab.
+overview. Submission files download as attachments.
+
+## Managing submissions
+
+The **Submissions** tab shows learner files and their submission status. Viewing
+submissions does not grant deletion rights. Deletion requires the separate
+**Delete Simply Upload submissions** permission, which is assigned to editing
+teachers and managers by default.
+
+Choose **Delete selected** or **Delete all submissions**, then review the confirmation.
+Deletion removes the submission records and files from this activity and recalculates
+upload-based completion. Cancelling the confirmation leaves submissions unchanged.
+Files and submissions in other activities are preserved.
+
+Course backups and restores include learner submissions and files only when user
+data is included. The activity and its settings can be restored without learner data.
+
+The interface and contextual help are available in English and German.
 
 ## Privacy
 

@@ -1,0 +1,53 @@
+{{!
+This file is part of a 108design source-available software product.
+
+Use and modification are permitted only under the Software License included
+with this distribution. See LICENSE.md for the full terms.
+
+File documentation for templates/submissions.mustache.
+
+@package   mod_upload
+@copyright 2026 Andreas Giesen <andreas@108design.com>
+@license   See LICENSE.md for the full terms.
+}}
+{{!
+    @template mod_upload/submissions
+    @copyright 2026 Andreas Giesen <andreas@108design.com>
+    @license See LICENSE.md for the full terms.
+}}
+<div data-upload-submissions>
+    {{#candelete}}
+    <form method="post" action="{{url}}">
+        <input type="hidden" name="sesskey" value="{{sesskey}}">
+    {{/candelete}}
+    <div class="table-responsive">
+        <table class="table generaltable">
+            <thead><tr>
+                {{#candelete}}<th scope="col"><input type="checkbox" data-upload-selectall aria-label="{{#str}}selectall, mod_upload{{/str}}"></th>{{/candelete}}
+                <th scope="col"><a href="{{usersorturl}}">{{#str}}user{{/str}}</a></th>
+                <th scope="col">{{#str}}status, mod_upload{{/str}}</th>
+                <th scope="col">{{#str}}filename, mod_upload{{/str}}</th>
+                <th scope="col"><a href="{{timesorturl}}">{{#str}}timeuploaded, mod_upload{{/str}}</a></th>
+            </tr></thead>
+            <tbody>
+            {{#rows}}
+                <tr>
+                    {{#candelete}}<td><input type="checkbox" name="selectedsubmissions[]" value="{{id}}" data-upload-selectitem aria-label="{{selectlabel}}"></td>{{/candelete}}
+                    <td>{{fullname}} ({{email}})</td>
+                    <td>{{status}}</td>
+                    <td>{{#files}}<a href="{{url}}">{{name}}</a><br>{{/files}}{{^files}}{{#str}}nofiles, mod_upload{{/str}}{{/files}}</td>
+                    <td>{{time}}</td>
+                </tr>
+            {{/rows}}
+            </tbody>
+        </table>
+    </div>
+    {{#candelete}}
+        <p class="text-muted">{{#str}}deletionhelp, mod_upload{{/str}}</p>
+        <div class="mt-3 mb-4">
+            <button type="submit" name="deleteselected" value="1" class="btn btn-secondary me-2">{{#str}}deleteselected, mod_upload{{/str}}</button>
+            <button type="submit" name="deleteall" value="1" class="btn btn-danger">{{#str}}deleteallsubmissions, mod_upload{{/str}}</button> {{{deletehelp}}}
+        </div>
+    </form>
+    {{/candelete}}
+</div>

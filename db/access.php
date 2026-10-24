@@ -55,6 +55,16 @@ $capabilities = [
         ],
     ],
 
+    'mod/upload:deletesubmissions' => [
+        'riskbitmask' => RISK_DATALOSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => [
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW,
+        ],
+    ],
+
     'mod/upload:viewsubmissions' => [
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
