@@ -1,4 +1,5 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
 // This file is part of a 108design source-available software product.
 //
 // Copyright (C) 2026 Andreas Giesen <andreas@108design.com>
@@ -18,8 +19,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_upload';
-$plugin->version = 2026110600;
+$plugin->version = 2026111400;
 $plugin->requires = 2024100700; // Moodle 4.5.
 $plugin->supported = [405, 503];
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.5.0';
+$plugin->release = '1.5.1';
