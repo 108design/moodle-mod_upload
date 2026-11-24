@@ -19,8 +19,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_upload';
-$plugin->version = 2026112001;
+$plugin->version = 2026112400;
 $plugin->requires = 2024100700; // Moodle 4.5.
 $plugin->supported = [405, 503];
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.5.3';
+$plugin->release = '1.6.0';

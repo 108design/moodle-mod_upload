@@ -23,12 +23,10 @@ $string['modulename'] = 'Simply Upload';
 $string['modulenameplural'] = 'Simply Uploads';
 $string['modulename_help'] = 'Simply Upload allows users to upload one or more files and complete based on upload/final submit rules.';
 $string['pluginadministration'] = 'Simply Upload administration';
-
 $string['upload:addinstance'] = 'Add a new Simply Upload activity';
 $string['upload:view'] = 'View Simply Upload activity';
 $string['upload:submit'] = 'Upload files in Simply Upload';
 $string['upload:viewsubmissions'] = 'View Simply Upload submissions';
-
 $string['maxfiles'] = 'Maximum number of files';
 $string['maxbytes'] = 'Maximum file size';
 $string['allowedtypes'] = 'Allowed file types';
@@ -39,15 +37,12 @@ $string['appenduserid'] = 'Append user ID to filenames';
 $string['appenduserid_help'] = 'If enabled, uploaded filenames will be saved with the user ID appended (for example: report_1234.pdf).';
 $string['appendusername'] = 'Append username to filenames';
 $string['appendusername_help'] = 'If enabled, uploaded filenames will be saved with the Moodle username appended (for example: report_jane.doe.pdf).';
-
 $string['completionmode'] = 'Completion mode';
 $string['completionmode_hasfile'] = 'Complete when at least one file exists';
 $string['completionmode_finalsubmit'] = 'Complete only after final submit';
-
 $string['completionuploaddone'] = 'Student must complete Simply Upload conditions';
 $string['completionuploaddone_desc'] = 'Activity is complete when the Simply Upload completion mode condition is met.';
 $string['completiondetail:uploaddone'] = 'User must satisfy Simply Upload completion condition';
-
 $string['uploadfiles'] = 'Upload files';
 $string['uploadtab'] = 'Upload';
 $string['submitfiles'] = 'Save uploaded files';
@@ -65,7 +60,6 @@ $string['uploadcompleted_canedit'] = 'Your upload is saved. You can still update
 $string['finalsubmitneeded'] = 'You uploaded files. Click Final submit to complete this activity.';
 $string['finalsubmitneeded_nofiles'] = 'Upload at least one file, then click Final submit to complete this activity.';
 $string['returntocourse'] = 'Return to course';
-
 $string['submissions'] = 'Submissions';
 $string['viewsubmissions'] = 'View submissions';
 $string['user'] = 'User';
@@ -87,15 +81,11 @@ $string['submissionsdeleted'] = '{$a} submission(s) deleted.';
 $string['nosubmissions'] = 'No submissions found.';
 $string['nonewmodules'] = 'No Simply Upload activities found in this course.';
 $string['pluginnotconfigured'] = 'Simply Upload is not configured correctly.';
-
 $string['modulename_link'] = 'mod/upload/view';
-
 $string['eventsubmissionupdated'] = 'Simply Upload submission updated';
 $string['eventsubmissionfinalised'] = 'Simply Upload submission finalised';
-
 $string['page-mod-upload-x'] = 'Any upload module page';
 $string['uploadfieldset'] = 'Custom upload settings';
-
 $string['privacy:metadata:submission'] = 'Learner submissions, their status and submission timestamps.';
 $string['privacy:metadata:submission:uploadid'] = 'The activity to which the submission belongs.';
 $string['privacy:metadata:submission:userid'] = 'The learner who owns the submission.';
@@ -106,33 +96,28 @@ $string['privacy:metadata:submission:timecreated'] = 'When the submission record
 $string['privacy:metadata:submission:timemodified'] = 'When the submission was last changed.';
 $string['privacy:metadata:files'] = 'Learner submission files, which may contain personal data. Filenames can include the learner user ID or username when those options are enabled.';
 $string['privacy:path'] = 'Submission';
-
 $string['upload:deletesubmissions'] = 'Delete Simply Upload submissions';
 $string['eventsubmissiondeleted'] = 'Simply Upload submission deleted';
 $string['confirmdeleteall'] = 'Delete all submissions and their files in this activity? This cannot be undone. Upload-based completion will be recalculated.';
 $string['confirmdeleteselected'] = 'Delete the selected submissions and their files in this activity? This cannot be undone. Upload-based completion will be recalculated.';
 $string['selectsubmission'] = 'Select the submission by {$a}';
 $string['deletionhelp'] = 'Deleting submissions also removes their files and recalculates upload-based completion. You will be asked to confirm before anything is deleted.';
-
 $string['adminhelp'] = 'Simply Upload help';
-$string['adminhelptopics'] = 'Help Topics';
+$string['adminhelptopics'] = 'Help topics';
 $string['adminhelpmore'] = 'More in the help panel';
 $string['adminhelp_upload'] = 'Uploading and final submission';
 $string['adminhelp_upload_article'] = '<p>Choose your files and select Save uploaded files. Current files lists what has been saved; opening a file downloads it.</p><p>If this activity requires final submission, select Final submit after saving. This locks your submission. Whether you may replace files before that depends on the activity settings.</p>';
 $string['adminhelp_report'] = 'Reading submissions';
 $string['adminhelp_report_article'] = '<p>The Submissions tab lists learner files and submission status. Select a column heading to change the sort order. Open a filename to download it.</p><p>Viewing submissions does not grant permission to delete them.</p>';
 $string['adminhelp_deleting'] = 'Deleting submissions';
-$string['adminhelp_deleting_article'] = '<p>Select learner submissions and choose Delete selected, or choose Delete all submissions for this activity. Review the confirmation before deleting.</p><p>Deletion permanently removes the selected submission records and files, then recalculates upload-based completion for their owners. Other activities are unaffected. This action requires the separate Delete Simply Upload submissions permission.</p>';
+$string['adminhelp_deleting_article'] = '<p>Select learner submissions and choose Delete selected, or choose Delete all submissions for this activity. Review the confirmation before deleting.</p><p>Deletion permanently removes the selected submission records and files, then recalculates upload-based completion for their owners. Other activities are unaffected. This action requires the separate delete Simply Upload submissions permission.</p>';
 $string['deleting'] = 'Deleting submissions';
 $string['deleting_help'] = 'Deletion removes submission records and files from this activity. The next page asks you to confirm.';
-
 $string['completionuploaddone_help'] = 'Depending on the completion mode, at least one file must be saved or final submission must be confirmed. Deleting a submission recalculates this completion.';
 $string['uploadfiles_help'] = 'Choose files within the displayed number, size and file-type limits, then select Save uploaded files. Files become part of your submission only after saving.';
 $string['adminhelp_upload_help'] = 'Save your files first. If final submission is required, Final submit then locks further editing.';
 $string['adminhelp_report_help'] = 'Read the saved files and submission status here. Permission to view submissions does not grant permission to delete them.';
 $string['adminhelp_deleting_help'] = 'Deletion removes submission records and files from this activity. The next page asks you to confirm.';
-
-
 $string['updateguard_heading'] = 'Update stopped';
 $string['updateguard_component'] = 'The package for {$a} was rejected.';
 $string['updateguard_hint'] = 'Use an approved package for the installed edition. You can review the operation again.';
@@ -149,8 +134,6 @@ $string['updateguard_installed'] = 'The installed update protection is incomplet
 $string['updateguard_operation'] = 'This combination of installation actions is not supported. Start a single update operation again.';
 $string['updateguard_failed'] = 'The update could not be verified. No installation was started.';
 $string['updateguard_back'] = 'Return to plugin overview';
-
-// Optional information before native package confirmation.
 $string['updateinfo_heading'] = 'Package information: {$a}';
 $string['updateinfo_verified'] = 'The embedded publisher record matches the installed release line.';
 $string['updateinfo_missing'] = 'This package has no embedded publisher verification record.';
