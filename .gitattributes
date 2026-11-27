@@ -61,6 +61,8 @@
 "/lang" -export-ignore -export-subst
 "/lang/de" -export-ignore -export-subst
 "/lang/de/upload.php" -export-ignore -export-subst
+"/lang/de_du" -export-ignore -export-subst
+"/lang/de_du/upload.php" -export-ignore -export-subst
 "/lang/en" -export-ignore -export-subst
 "/lang/en/upload.php" -export-ignore -export-subst
 "/lib.php" -export-ignore -export-subst
